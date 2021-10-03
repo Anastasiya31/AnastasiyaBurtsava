@@ -5,7 +5,7 @@ public class Homework2 {
                 System.out.println(sum(Integer.MAX_VALUE, Integer.MAX_VALUE));
                 System.out.println(max(56, 349));
                 System.out.println(average(new int[]{0, -2, 3, -1, 5}));
-                System.out.println(max(new int[]{1, 2, 3, 4, 5, 100, 99}));
+                System.out.println(max(new int[]{-2, -3, -1, -5}));
                 System.out.println(calculateHypotenuse(3,4));
             }
 
@@ -14,15 +14,12 @@ public class Homework2 {
              * 2. Дополнительно: сделать проверку если сумма a и b больше чем максимальное значение int то вернуть -1
              **/
             public static int sum(int a, int b) {
-
-                if ((a >= Integer.MAX_VALUE && b>0)|| (b >= Integer.MAX_VALUE && a>0) ){
-                   return -1;
-                }
+                long c = (long)a+(long)b;
+                if (c >= Integer.MAX_VALUE ) return -1;
                 else {
                     return a+b;
                 }
             }
-
             /**
             * Метод должен вернуть максимальное значение из двух чисел
              */
@@ -43,13 +40,12 @@ public class Homework2 {
              * Метод должен вернуть максимальый элемент массива. Пример: array = {1,2,10,3} метод возвращает 10
              **/
             public static int max(int[] array) {
-                int max = 0;
+                int max = array[0];
                 for (int i : array) {
-                  if(max<i){
-                      max=i;
+                    if (max < i) {
+                        max = i;
                     }
-                }
-                return max;
+                }return max;
             }
 
             /**
