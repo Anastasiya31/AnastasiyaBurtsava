@@ -6,6 +6,7 @@ public class Homework2 {
         System.out.println(max(56, 349));
         System.out.println(average(new int[]{0, -2, 3, -1, 5}));
         System.out.println(max(new int[]{-2, -3, -1, -5}));
+        System.out.println(max(null));
         System.out.println(calculateHypotenuse(3, 4));
     }
 
@@ -15,8 +16,9 @@ public class Homework2 {
      **/
     public static int sum(int a, int b) {
         long c = (long) a + (long) b;
-        if (c >= Integer.MAX_VALUE) return -1;
-        else {
+        if (c >= Integer.MAX_VALUE) {
+            return -1;
+        } else {
             return a + b;
         }
     }
@@ -32,8 +34,10 @@ public class Homework2 {
      * Метод должен вернуть среднее значение из массива чисел
      */
     public static double average(int[] array) {
-        double sum = 0.0;
-        for (int i : array) sum += i;
+        double sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
         return sum / array.length;
     }
 
@@ -41,6 +45,9 @@ public class Homework2 {
      * Метод должен вернуть максимальый элемент массива. Пример: array = {1,2,10,3} метод возвращает 10
      **/
     public static int max(int[] array) {
+        if (array == null) {
+            return 0;
+        }
         int max = array[0];
         for (int i : array) {
             if (max < i) {
