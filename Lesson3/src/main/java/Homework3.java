@@ -7,7 +7,7 @@ public class Homework3 {
         System.out.println(operation(1));
         System.out.println(operation(-1));
         System.out.println(operation(0));
-        System.out.println(calculateCountOfOddElementsInMatrix(new int[]{1, 2, 3, 4, 5, 6}));
+        System.out.println("Количество нечетных элементов = " + calculateCountOfOddElementsInMatrix(new int[]{1, 2, 3, 4, 5, 6}));
         calculateSumOfDiagonalElements();
         countDevs(103);
         countDevs(101);
@@ -53,11 +53,9 @@ public class Homework3 {
     public static int operation(int number) {
         if (number > 0) {
             number++;
-        }
-        if (number < 0) {
+        } else if (number < 0) {
             number -= 2;
-        }
-        if (number == 0) {
+        } else {
             number = 10;
         }
         return number;
@@ -75,7 +73,6 @@ public class Homework3 {
                 count++;
             }
         }
-        System.out.print("Количество нечетных элементов = ");
         return count;
     }
 
@@ -91,14 +88,9 @@ public class Homework3 {
     public static void countDevs(int count) {
         if (count % 10 == 1 && count % 100 != 11) {
             System.out.println(count + " программист");
-        }
-        if (count % 10 > 1 && count % 10 < 5 && !(count % 100 > 10 && count % 100 < 16)) {
+        } else if (count % 10 > 1 && count % 10 < 5 && !(count % 100 > 10 && count % 100 < 16)) {
             System.out.println(count + " программистa");
-        }
-        if (count % 10 > 5 && count % 10 <= 9 || count % 10 == 0) {
-            System.out.println(count + " программистов");
-        }
-        if (count % 100 > 10 && count % 100 < 16) {
+        } else {
             System.out.println(count + " программистов");
         }
     }
@@ -110,16 +102,13 @@ public class Homework3 {
      * - если остаток от деления на 3 и 5 равен нулю 0 ,то вывести "foobar" (example of number - 15)
      */
     public static void foobar(int number) {
-        if (number % 3 == 0 && number % 5 != 0) {
-            System.out.println("foo");
-        }
-        if (number % 5 == 0 && number % 3 != 0) {
-            System.out.println("bar");
-        }
         if (number % 15 == 0) {
             System.out.println("foobar");
-        }
-        if (number % 5 != 0 && number % 3 != 0) {
+        } else if (number % 3 == 0) {
+            System.out.println("foo");
+        } else if (number % 5 == 0) {
+            System.out.println("bar");
+        } else {
             System.out.println("делится с остатком");
         }
     }
@@ -192,14 +181,13 @@ public class Homework3 {
                 System.out.print(arr[i][j] + " ");
             }
         }
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                if (arr[i][j] % 3 == 0) {
+        for (int[] ints : arr) {
+            for (int anInt : ints) {
+                if (anInt % 3 == 0) {
                     System.out.print("+ ");
-                }
-                if (arr[i][j] % 7 == 0 && arr[i][j] % 3 != 0) {
+                } else if (anInt % 7 == 0) {
                     System.out.print("- ");
-                } else if (arr[i][j] % 7 != 0 && arr[i][j] % 3 != 0) {
+                } else {
                     System.out.print("* ");
                 }
             }
