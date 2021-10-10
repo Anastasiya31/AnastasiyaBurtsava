@@ -5,7 +5,12 @@ import java.util.Scanner;
 public class Homework4 {
     public static void main(String[] args) {
         amebaDivision();             //1
-        summ(4, 5);            //2
+        summ(-3, 2);
+        summ(-3, -2);
+        summ(2, -3);
+        summ(0, -3);
+        summ(2, 6);
+        //2
         stars();                     //3
         count();                     //4
         oddArr();                    //7
@@ -35,11 +40,18 @@ public class Homework4 {
 
     public static void summ(int a, int b) {
         int temp = 0;
-        for (int i = 1; i <= b; i++) {
-            temp += a;
+        for (int i = 1; i <= Math.abs(b); i++) {
+            temp += Math.abs(a);
         }
-        System.out.println(temp);
+        if (a < 0 && b < 0) {
+            System.out.println(temp);
+        } else if (a < 0 || b < 0) {
+            System.out.println(-temp);
+        } else {
+            System.out.println(temp);
+        }
     }
+
 
 ////        3) Дан двухмерный массив размерностью 4 на 4, необходимо нарисовать четыре треугольника вида
 //
@@ -72,7 +84,7 @@ public class Homework4 {
         System.out.println("c)");
         for (int i = chars.length - 1; i >= 0; i--, System.out.println()) {
             for (int j = chars[i].length - 1; j >= 0; j--) {
-                System.out.print(chars[i][j] + " ");
+                System.out.print(chars[i][j]);
             }
         }
     }
@@ -106,8 +118,9 @@ public class Homework4 {
     private static void oddArr() {
         int a = 0;
         for (int i = 1; i < 100; i++) {
-            if (i % 2 != 0)
+            if (i % 2 != 0) {
                 a++;
+            }
         }
         int[] arr = new int[a];
         for (int i = 1, b = 0; i < 100; i += 2) {
@@ -139,8 +152,9 @@ public class Homework4 {
         }
         int tmp = 0;
         for (int i = 0; i < mass.length; i++) {
-            if (mass[i] == max)
+            if (mass[i] == max) {
                 tmp = i;
+            }
         }
         System.out.println("Максимальный элемент " + max + ", индекс его последнего вхождения в массив = " + tmp);
     }
@@ -170,7 +184,7 @@ public class Homework4 {
             System.out.println("Пустой массив");
         } else {
             int max = 0;
-            for (int i = 0; i < Objects.requireNonNull(arr).length; i++) {
+            for (int i = 0; i < arr.length; i++) {
                 if (max < arr[i]) {
                     max = arr[i];
                     int temp = max;
