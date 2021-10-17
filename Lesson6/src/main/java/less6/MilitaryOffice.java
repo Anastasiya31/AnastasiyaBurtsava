@@ -9,14 +9,6 @@ public class MilitaryOffice {
         this.personRegistry = personRegistry;
     }
 
-
-    @Override
-    public String toString() {
-        return "MilitaryOffice{" +
-                "personRegistry=" + personRegistry +
-                '}';
-    }
-
     protected void armipotent() {
         int count = 0;
         for (Person person : personRegistry) {
@@ -30,41 +22,41 @@ public class MilitaryOffice {
         }
     }
 
-    public void ages() {
+    public int ages() {
         int count = 0;
         for (Person person : personRegistry) {
             if (person.getAge() >= 25 && person.getAge() <= 27 && person.getSex().equals("male")) {
                 count++;
             }
         }
-        System.out.println("Возраст от 25 до 27: " + count);
-        if (count == 0) {
-            System.out.println("Возраст от 25 до 27 нет");
-        }
+        return count;
     }
 
-    public void alexandr() {
+    public int alexandr() {
         int count = 0;
         for (Person person : personRegistry) {
 
-            if (person.getAge() >= 18 && person.getAge() <= 27 && person.getSex().equals("male") && person.getName() == "Александр") {
+            if (person.getAge() >= 18 && person.getAge() <= 27 && person.getSex().equals("male") && person.getName().equals("Александр")) {
                 count++;
             }
         }
-        if (count == 0) {
-            System.out.println("Александров нет");
-        } else {
-            System.out.println("С именем Александр " + count);
-        }
+        return count;
     }
 
-    public void minsk() {
+    public int minsk() {
         int count = 0;
         for (Person person : personRegistry) {
-            if (person.getAge() >= 18 && person.getAge() <= 27 && person.getSex().equals("male") && person.getAdress().equals(new Adress("Belarus", "Minsk"))) {
+            Adress addr = person.getAdress();
+            if (person.getAge() >= 18 && person.getAge() <= 27 && person.getSex().equals("male") && addr.getCity().equals("Minsk")) {
                 count++;
             }
         }
-        System.out.println("В городе Минске: " + count);
+        return count;
+    }
+
+    @Override
+    public String toString() {
+        return "MilitaryOffice " +
+                "personRegistry=" + personRegistry;
     }
 }

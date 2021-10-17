@@ -1,6 +1,12 @@
 package less6;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Adress {
+
     private String country;
     private String city;
 
