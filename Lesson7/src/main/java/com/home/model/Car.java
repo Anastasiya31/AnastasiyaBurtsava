@@ -38,13 +38,13 @@ public class Car {
         if (onCar == true) {
             System.out.println("Машина едет");
         } else {
-            System.out.println("Машина не заведена, не может ехать, ");
+            System.out.println("Машина не заведена, не может ехать");
         }
         count++;
     }
 
     public void shutOff() {
-        System.out.println("Машина заглушена и проехала " + distance + "км");
+        System.out.println("Машина заглушена и проехала " + distance + " км");
         onCar = false;
         onEngine = false;
         isFull = false;

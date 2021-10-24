@@ -10,7 +10,6 @@ public class Main {
 
         car1.setDistance(130);
 
-
         engine1.startEngine();
         gasolineTank1.isFull();
         car1.startCar();
