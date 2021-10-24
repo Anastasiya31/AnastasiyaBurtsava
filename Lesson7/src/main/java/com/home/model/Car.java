@@ -12,11 +12,12 @@ public class Car {
     private String name;
     private int yom;
     private int distance;
-    private int distanceFuel;
+
     private int count = 0;
     private boolean onEngine;
     private boolean onCar;
     private boolean fuels;
+    private boolean isFull;
     private boolean coveredDistance;
     private Scanner sc = new Scanner(System.in);
 
@@ -24,9 +25,9 @@ public class Car {
         if (onEngine == true && fuels == true) {
             System.out.println("Машина заведена");
             onCar = true;
-        } else if (onEngine == true && fuels == false) {
+        } else if (onEngine == true && fuels) {
             System.out.println("Бак пуст, машину завести нельзя");
-        } else if (onEngine == false && fuels == true) {
+        } else if (onEngine && fuels == true) {
             System.out.println("Двигатель не заведён, машину завести нельзя");
         } else {
             System.out.println("Машину завести нельзя");
@@ -46,6 +47,7 @@ public class Car {
         System.out.println("Машина заглушена и проехала " + distance + "км");
         onCar = false;
         onEngine = false;
+        isFull = false;
         coveredDistance = true;
     }
 
@@ -71,6 +73,7 @@ public class Car {
     public class GasolineTank {
         private int volumeTank;
         private int fuelQuantity;
+        private int distanceFuel;
 
         public int fuelNow() {
             if (coveredDistance == true) {
@@ -90,26 +93,33 @@ public class Car {
             } else {
                 System.out.println("Бак пуст");
             }
+            isFull = true;
         }
 
-        public int fullUp() {
-            fuelNow();
-            System.out.println("Заправте машину ");
-            int n = sc.nextInt();
-            if (n > volumeTank - fuelQuantity) {
-                System.out.println("Слишком много");
-                n = sc.nextInt();
+        public void fullUp() {
+            if (isFull == true) {
+                System.out.println("Заправте машину ");
+                int n = sc.nextInt();
+                if (n > volumeTank - fuelQuantity) {
+                    System.out.println("Слишком много");
+                    n = sc.nextInt();
+                }
+                if (fuelQuantity > 0 && fuelQuantity < volumeTank) {
+                    fuelQuantity += n;
+                    System.out.println("Заправлено, в баке " + fuelQuantity);
+                    isFull = true;
+                }
+            } else {
+                System.out.println("Проверте бак");
             }
-            if (fuelQuantity < volumeTank && fuelQuantity > 0) {
-                fuelQuantity += n;
-                System.out.println("Заправлено, в баке " + fuelQuantity);
-                return fuelQuantity += n;
-            }
-            return fuelQuantity;
         }
 
         public int fuelLeft() {
-            return fuelQuantity - distanceFuel;
+            if (isFull == true) {
+                return fuelQuantity;
+            } else {
+                return fuelQuantity - distanceFuel;
+            }
         }
     }
 }
