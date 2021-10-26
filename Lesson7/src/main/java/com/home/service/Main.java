@@ -1,11 +1,12 @@
 package com.home.service;
 
 import com.home.model.Car;
+import com.home.model.Engine;
 
 public class Main {
     public static void main(String[] args) {
-        Car car = new Car();
-        Car.Engine engine = car.new Engine("ggg", 4);
+        Engine engine = new Engine("ggg", 4);
+        Car car = new Car(engine);
         Car.GasolineTank gasolineTank = car.new GasolineTank(50, 45, 10);
 
         car.setName("Mazda");
@@ -14,11 +15,11 @@ public class Main {
 
         System.out.println("Машина - " + car.getName() + ", год выпуска - " + car.getYearOfMade());
         gasolineTank.checkFuelTank();
-        engine.startEngine();
+        car.startEngine();
         car.startCar();
         car.ride();
         car.shutOff();
-        engine.startEngine();
+        car.startEngine();
         gasolineTank.checkFuelTank();
         gasolineTank.refuelCar();
         System.out.println("Осталось топлива - " + gasolineTank.fuelLeft());
@@ -26,7 +27,7 @@ public class Main {
         car.ride();
         car.shutOff();
         System.out.println("Пройденная дистанция - " + car.allDistance());
-        engine.startEngine();
+        car.startEngine();
         gasolineTank.checkFuelTank();
         gasolineTank.refuelCar();
         System.out.println("Осталось топлива - " + gasolineTank.fuelLeft());

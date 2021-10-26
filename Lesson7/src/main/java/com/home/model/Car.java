@@ -9,14 +9,28 @@ import java.util.Scanner;
 @Setter
 @Getter
 public class Car {
-    private String name;
-    private int yearOfMade;
+    private String name = "BMW";
+    private int yearOfMade = 2020;
     private int distance = 100;
     private int count = 0;
     private boolean engineStarted;
     private boolean fuels;
     private boolean coveredDistance;
     private Scanner sc = new Scanner(System.in);
+    private static Engine engine;
+
+    public Car(Engine engine) {
+        Car.engine = engine;
+    }
+
+    public void startEngine() {
+        if (!fuels) {
+            System.out.println("Бак пуст, машину завести нельзя");
+        } else {
+            System.out.println("Двигатель заведен");
+            engineStarted = true;
+        }
+    }
 
     public void startCar() {
         if (engineStarted) {
@@ -44,22 +58,6 @@ public class Car {
 
     public int allDistance() {
         return distance * count;
-    }
-
-    @Getter
-    @AllArgsConstructor
-    public class Engine {
-        private String typeEngine;
-        private int enginePower;
-
-        public void startEngine() {
-            if (!fuels) {
-                System.out.println("Бак пуст, машину завести нельзя");
-            } else {
-                System.out.println("Двигатель заведен");
-                engineStarted = true;
-            }
-        }
     }
 
     @Setter
