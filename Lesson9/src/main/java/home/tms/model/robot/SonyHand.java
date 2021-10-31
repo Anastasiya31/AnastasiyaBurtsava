@@ -1,9 +1,14 @@
 package home.tms.model.robot;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class SonyHand implements IHand {
+    private int priceHand;
+
     @Override
     public int price() {
-        return 45;
+        return priceHand;
     }
 
     @Override

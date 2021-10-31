@@ -1,10 +1,14 @@
 package home.tms.model.robot;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class ToshibaHand implements IHand {
+    private int priceHand;
 
     @Override
     public int price() {
-        return 90;
+        return priceHand;
     }
 
     @Override

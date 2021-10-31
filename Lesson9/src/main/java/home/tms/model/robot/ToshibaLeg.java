@@ -1,9 +1,14 @@
 package home.tms.model.robot;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class ToshibaLeg implements ILeg {
+    private int priceLeg;
+
     @Override
     public int price() {
-        return 55;
+        return priceLeg;
     }
 
     @Override
