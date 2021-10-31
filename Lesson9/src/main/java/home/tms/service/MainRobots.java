@@ -2,22 +2,29 @@ package home.tms.service;
 
 import home.tms.model.robot.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class MainRobots {
     public static void main(String[] args) {
-        Robot robot1 = new Robot(new SamsungHand(), new SonyHead(), new ToshibaLeg());
-        Robot robot2 = new Robot(new SonyHand(), new SonyHead(), new SamsungLeg());
-        Robot robot3 = new Robot(new ToshibaHand(), new SamsungHead(), new ToshibaLeg());
+        Robot robot1 = new Robot(new SamsungHand(100), new SonyHead(83), new ToshibaLeg(84));
+        Robot robot2 = new Robot(new SonyHand(79), new SonyHead(83), new SamsungLeg(99));
+        Robot robot3 = new Robot(new ToshibaHand(82), new SamsungHead(66), new ToshibaLeg(49));
 
         robot1.action();
         robot2.action();
         robot3.action();
 
-        if (robot1.cost() > robot2.cost() && robot1.cost() > robot3.cost()) {
-            System.out.println("Робот 1 самый дорогой");
-        } else if (robot2.cost() > robot1.cost() && robot2.cost() > robot3.cost()) {
-            System.out.println("Робот 2 самый дорогой");
-        } else {
-            System.out.println("Робот 3 самый дорогой");
-        }
+        List<Robot> robots = new ArrayList<>();
+        robots.add(robot1);
+        robots.add(robot2);
+        robots.add(robot3);
+
+        Robot max = Collections.max(robots, Comparator.comparingInt(Robot::cost));
+
+        System.out.println(max.infoCost() + ", со стоимостью = " + max.cost());
+
     }
 }

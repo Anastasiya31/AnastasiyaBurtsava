@@ -1,10 +1,15 @@
 package home.tms.model.robot;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class SamsungLeg implements ILeg {
+
+    private int priceLeg;
 
     @Override
     public int price() {
-        return 76;
+        return priceLeg;
     }
 
     @Override

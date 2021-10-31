@@ -1,10 +1,14 @@
 package home.tms.model.robot;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class SonyHead implements IHead {
+    private int priceHead;
 
     @Override
     public int price() {
-        return 65;
+        return priceHead;
     }
 
     @Override
