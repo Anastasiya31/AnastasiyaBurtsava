@@ -1,49 +1,44 @@
 package com.home.service;
 
+import java.util.ArrayList;
+
 public class TextFormatter {
 
     private TextFormatter() {
     }
 
-    public static void palindromeMass(String[] str) {
+    public static String getPalindromes(String[] str) {
+        StringBuilder result = new StringBuilder();
         for (String s : str) {
             if ((s.equals(new StringBuilder(s).reverse().toString()))) {
-                System.out.println(s);
+                result.append(s).append(" ");
             }
         }
+        return result.toString();
     }
 
-    public static void formatText(String text) {
+    public static String formatText(String text) {
         String[] sentences = text.split("[.!?]\\s*");
+        ArrayList<String> arr = new ArrayList<>();
         for (String sentence : sentences) {
-            if (countWords(sentence) >= 3 && countWords(sentence) <= 5) {
-                System.out.println(sentence);
+            int count = countWords(sentence);
+            if (count >= 3 && count <= 5 || checkPalindromeInSentence(sentence)) {
+                arr.add(sentence);
             }
         }
-        for (String sentence : sentences) {
-            if (palindrome(sentence)) {
-                System.out.println(sentence);
-            }
-        }
+        return String.valueOf(arr);
     }
 
     public static int countWords(String str) {
-        int count = 0;
-        if (str.length() != 0) {
-            count++;
-            for (int i = 0; i < str.length(); i++) {
-                if (str.charAt(i) == ' ') {
-                    count++;
-                }
-            }
-        }
-        return count;
+        String[] mass = str.split(" ");
+        return mass.length;
     }
 
-    public static boolean palindrome(String str) {
+    public static boolean checkPalindromeInSentence(String str) {
         String[] subStr = str.split(" ");
+        StringBuilder result = new StringBuilder();
         for (String s : subStr) {
-            if (s.length() > 1 && s.equals(new StringBuilder(s).reverse().toString())) {
+            if (s.length() > 2 && s.equals(new StringBuilder(s).reverse().toString())) {
                 return true;
             }
         }
