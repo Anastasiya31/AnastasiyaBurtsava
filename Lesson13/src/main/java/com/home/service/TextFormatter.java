@@ -20,8 +20,8 @@ public class TextFormatter {
     }
 
     public static void getRegexCab(String str) {
-        String regex = "\\w{3,}";
-        Pattern pattern = Pattern.compile(regex);
+        String regex2 = "c.+?b";
+        Pattern pattern = Pattern.compile(regex2);
         Matcher matcher = pattern.matcher(str);
         while (matcher.find()) {
             System.out.println(matcher.group());
@@ -38,7 +38,7 @@ public class TextFormatter {
     }
 
     public static void countLatin(String str) {
-        String regex = "([a-zA-Z]{3,})(\s+)";
+        String regex = "([а-яА-Я]{2,}) | ([0-9]{3,}) |([a-zA-Z]+\\d)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         while (matcher.find()) {
@@ -47,15 +47,7 @@ public class TextFormatter {
     }
 
     public static boolean validate(String str) {
-        String regex = "^[a-z1|5]{4,20}+$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(str);
-        while (matcher.find()) {
-            String s = matcher.group();
-            if (s != null) {
-                return true;
-            }
-        }
-        return false;
+        String regex = "[a-z1|5]{4,20}";
+        return str.matches(regex);
     }
 }
