@@ -9,7 +9,7 @@ public class StreamsUtils {
     private StreamsUtils() {
     }
 
-    public static String input(String fileInputName) throws IOException {
+    public static String createReader(String fileInputName) throws IOException {
         StringBuilder builder = new StringBuilder();
         char[] buff = new char[1024];
         FileReader reader = new FileReader(fileInputName);
@@ -22,24 +22,24 @@ public class StreamsUtils {
         return text;
     }
 
-    public static void first(String fileInputName, String fileOutputName) throws IOException {
-        input(fileInputName);
+    public static void filePalindromes(String fileInputName, String fileOutputName) throws IOException {
+        createReader(fileInputName);
         FileWriter writer = new FileWriter(fileOutputName);
-        writer.write(TextFormatter.getPalindromes(input(fileInputName)));
+        writer.write(TextFormatter.getPalindromes(createReader(fileInputName)));
         writer.close();
     }
 
-    public static void second(String fileInputName, String fileOutputName) throws IOException {
-        input(fileInputName);
+    public static void fileFormat(String fileInputName, String fileOutputName) throws IOException {
+        createReader(fileInputName);
         FileWriter writer = new FileWriter(fileOutputName);
-        writer.write(TextFormatter.formatText(input(fileInputName)));
+        writer.write(TextFormatter.formatText(createReader(fileInputName)));
         writer.close();
     }
 
-    public static void third(String fileInputName, String fileOutputName) throws IOException {
-        input(fileInputName);
-        input(fileOutputName);
-        TextFormatter.checkCensor(input(fileInputName), input(fileOutputName));
+    public static void checkCensorFile(String fileInputName, String fileOutputName) throws IOException {
+        createReader(fileInputName);
+        createReader(fileOutputName);
+        TextFormatter.checkCensor(createReader(fileInputName), createReader(fileOutputName));
     }
 
     public static void serializationCar(Car car, String fileName) throws IOException, ClassNotFoundException {
