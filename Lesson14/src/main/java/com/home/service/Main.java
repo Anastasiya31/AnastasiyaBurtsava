@@ -1,7 +1,9 @@
 package com.home.service;
 
-import java.io.FileReader;
-import java.io.FileWriter;
+import com.home.service.car.Car;
+import com.home.service.car.Engine;
+import com.home.service.car.GasolineTank;
+
 import java.io.IOException;
 
 public class Main {
@@ -9,44 +11,23 @@ public class Main {
     private static final String INPUT_FILE1 = "Lesson14/src/main/java/com/home/service/hw1/input.txt";
     private static final String OUTPUT_FILE2 = "Lesson14/src/main/java/com/home/service/hw2/output.txt";
     private static final String INPUT_FILE2 = "Lesson14/src/main/java/com/home/service/hw2/input.txt";
+    private static final String INPUT_FILE3 = "Lesson14/src/main/java/com/home/service/hw3/input.txt";
+    private static final String CENSOR_FILE3 = "Lesson14/src/main/java/com/home/service/hw3/censor.txt";
+    private static final String INPUT_FILE4 = "Lesson14/src/main/java/com/home/service/hw4/input1.txt";
 
 
     public static void main(String[] args) {
-        StringBuilder builder = new StringBuilder();
-        char[] buff = new char[1024];
-        try (FileReader reader = new FileReader(INPUT_FILE1)) {
-            int read;
-            while ((read = reader.read(buff)) > -1) {
-                builder.append(buff, 0, read);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String text = builder.toString();
-        String[] offers = text.split("\\s+");
-        try (
-                FileWriter writer = new FileWriter(OUTPUT_FILE1)) {
-            writer.write(TextFormatter.getPalindromes(offers));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        Car car = new Car("BMW", new Engine("ddd", 55), new GasolineTank("aaa", 10), 150, 100000);
 
-        StringBuilder builder2 = new StringBuilder();
-        char[] buff2 = new char[1024];
-        try (FileReader reader = new FileReader(INPUT_FILE2)) {
-            int read;
-            while ((read = reader.read(buff2)) > -1) {
-                builder2.append(buff2, 0, read);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String text2 = builder2.toString();
-        try (
-                FileWriter writer = new FileWriter(OUTPUT_FILE2)) {
-            writer.write(TextFormatter.formatText(text2));
-        } catch (IOException e) {
+        try {
+            StreamsUtils.first(INPUT_FILE1, OUTPUT_FILE1);
+            StreamsUtils.second(INPUT_FILE2, OUTPUT_FILE2);
+            System.out.println("Цензура");
+            StreamsUtils.third(INPUT_FILE3, CENSOR_FILE3);
+            System.out.println("Сериализация");
+            StreamsUtils.serializationCar(car, INPUT_FILE4);
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
