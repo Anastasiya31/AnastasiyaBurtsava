@@ -1,6 +1,9 @@
 package com.home.service;
 
-import com.home.service.car.Car;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.home.service.car.CarSerializable;
+import com.home.service.hw5.Car;
 
 import java.io.*;
 
@@ -9,7 +12,7 @@ public class StreamsUtils {
     private StreamsUtils() {
     }
 
-    public static String input(String fileInputName) throws IOException {
+    public static String createReader(String fileInputName) throws IOException {
         StringBuilder builder = new StringBuilder();
         char[] buff = new char[1024];
         FileReader reader = new FileReader(fileInputName);
@@ -22,32 +25,36 @@ public class StreamsUtils {
         return text;
     }
 
-    public static void first(String fileInputName, String fileOutputName) throws IOException {
-        input(fileInputName);
+    public static void filePalindromes(String fileInputName, String fileOutputName) throws IOException {
         FileWriter writer = new FileWriter(fileOutputName);
-        writer.write(TextFormatter.getPalindromes(input(fileInputName)));
+        writer.write(TextFormatter.getPalindromes(createReader(fileInputName)));
         writer.close();
     }
 
-    public static void second(String fileInputName, String fileOutputName) throws IOException {
-        input(fileInputName);
+    public static void fileFormat(String fileInputName, String fileOutputName) throws IOException {
         FileWriter writer = new FileWriter(fileOutputName);
-        writer.write(TextFormatter.formatText(input(fileInputName)));
+        writer.write(TextFormatter.formatText(createReader(fileInputName)));
         writer.close();
     }
 
-    public static void third(String fileInputName, String fileOutputName) throws IOException {
-        input(fileInputName);
-        input(fileOutputName);
-        TextFormatter.checkCensor(input(fileInputName), input(fileOutputName));
+    public static void checkCensorFile(String fileInputName, String fileOutputName) throws IOException {
+        TextFormatter.checkCensor(createReader(fileInputName), createReader(fileOutputName));
     }
 
-    public static void serializationCar(Car car, String fileName) throws IOException, ClassNotFoundException {
+    public static void serializationCar(CarSerializable car, String fileName) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
         oos.writeObject(car);
         oos.close();
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
         System.out.println(ois.readObject());
         ois.close();
+    }
+
+    public static void readWriteToJSON(String fileName) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(MapperFeature.PROPAGATE_TRANSIENT_MARKER, true);
+        InputStream is = new FileInputStream(fileName);
+        Car car = mapper.readValue(is, Car.class);
+        System.out.println(car);
     }
 }
