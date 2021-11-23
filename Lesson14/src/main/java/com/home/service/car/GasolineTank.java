@@ -14,7 +14,7 @@ public class GasolineTank implements Serializable {
     @Override
     public String toString() {
         return "GasolineTank{" +
-                "typeFuels='" + typeFuels + '\'' +
+                "typeFuels ='" + typeFuels + '\'' +
                 ", volume=" + volume +
                 '}';
     }

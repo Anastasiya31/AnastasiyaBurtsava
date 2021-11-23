@@ -1,10 +1,8 @@
 package com.home.service;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class TextFormatter implements Serializable {
+public class TextFormatter {
 
     private TextFormatter() {
     }
@@ -24,7 +22,7 @@ public class TextFormatter implements Serializable {
         String[] sentences = text.split("[.!?]\\s*");
         ArrayList<String> arr = new ArrayList<>();
         for (String sentence : sentences) {
-            int count = countWords(sentence).length;
+            int count = getArray(sentence).length;
             if (count >= 3 && count <= 5 || checkPalindromeInSentence(sentence)) {
                 arr.add(sentence);
             }
@@ -33,37 +31,40 @@ public class TextFormatter implements Serializable {
     }
 
     public static void checkCensor(String text, String text2) {
-        String[] sentences = text.split("[.!?]\\s*");
-        int count = 0;
-        boolean var = false;
-        for (String sentence : sentences) {
-            if (sentence.contains(Objects.requireNonNull(censorWords(text2)))) {
-                count++;
-                var = true;
-                System.out.println(sentence);
+        if (censorWords(text, text2)) {
+            String[] sentences = text.split("[.!?]\\s*");
+            String[] words = text2.split("\\s+");
+            int count = 0;
+            for (String sentence : sentences) {
+                for (String word : words) {
+                    if (sentence.contains(word)) {
+                        System.out.println(sentence);
+                        count++;
+                    }
+                }
             }
-        }
-        if (var) {
             System.out.println("Количество предложений не прошедших цензуру = " + count);
         } else {
             System.out.println("Текст прошёл цензуру");
         }
     }
 
-    public static String censorWords(String text) {
+    public static boolean censorWords(String text, String text2) {
         String[] words = text.split("\\s+");
         for (String word : words) {
-            return word;
+            if (text2.contains(word)) {
+                return true;
+            }
         }
-        return null;
+        return false;
     }
 
-    public static String[] countWords(String str) {
+    public static String[] getArray(String str) {
         return str.split(" ");
     }
 
     public static boolean checkPalindromeInSentence(String str) {
-        for (String s : countWords(str)) {
+        for (String s : getArray(str)) {
             if (s.length() > 2 && s.equalsIgnoreCase(new StringBuilder(s).reverse().toString())) {
                 return true;
             }

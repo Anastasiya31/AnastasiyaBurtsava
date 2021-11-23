@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @AllArgsConstructor
-public class Car implements Serializable {
+public class CarSerializable implements Serializable {
 
     private String brand;
     private Engine engine;
@@ -18,7 +18,7 @@ public class Car implements Serializable {
     @Override
     public String toString() {
         return "Car{" +
-                "brand='" + brand + '\'' +
+                "brand= '" + brand + '\'' +
                 ", engine=" + engine +
                 ", gasolineTank=" + gasolineTank +
                 ", speed=" + speed +
