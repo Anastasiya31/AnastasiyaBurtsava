@@ -28,7 +28,7 @@ public class Main {
         System.out.println(countEvenNumbers());
         System.out.println(firstCapitalLetter());
         System.out.println(notEmptyCars(cars));
-        System.out.println(surnamesStartWith(persons, "Д"));
-        System.out.println(NumberEmployeesPerLetter(persons));
+        System.out.println(surnamesStartWith(persons));
+        employeesPerLetter(persons);
     }
 }
